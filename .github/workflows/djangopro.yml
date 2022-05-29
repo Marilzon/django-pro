@@ -1,0 +1,21 @@
+name: Application djangopro
+
+on: [pull_request]
+
+jobs:
+  build-and-test:
+    env:
+      PIPENV_NO_INHERIT: 1
+      PIPENV_IGNORE_VIRTUALENVS: 1
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v3
+    with:
+      python-version: '3.x'
+
+      run:
+        pip install pipenv
+        pipenv sync --dev
+        pipenv run pytest djangopro
