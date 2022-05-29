@@ -1,9 +1,9 @@
-name: Application dJango
+name: Application djangopro
 
-on: [pull_request]
-
+on: push
+name: Deploy to Heroku
 jobs:
-    build:
+    release:
         env:
             PIPENV_NO_INHERIT: 1
             PIPENV_IGNORE_VIRTUALENVS: 1
