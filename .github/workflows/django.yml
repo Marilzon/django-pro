@@ -1,0 +1,24 @@
+name: Application dJango
+
+on: [pull_request]
+
+jobs:
+    build:
+        env:
+            PIPENV_NO_INHERIT: 1
+            PIPENV_IGNORE_VIRTUALENVS: 1
+        runs-on: ubuntu-latest
+
+        steps:
+        - uses: actions/checkout@v3
+        - uses: actions/setup-python@v3
+        with:
+            python-version: '3.x'
+            architecture: 'x64'
+        - name: Install dependencies
+          run:
+            pip install pipenv
+            pipenv sync --dev
+        - name: Run tests
+          run:
+            pipenv run pytest djangopro
